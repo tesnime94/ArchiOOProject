@@ -1,25 +1,31 @@
 package com.example.Trip.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnnouncementModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
     private String description;
     private String period;
-    private Double budget;
-    @Lob
-    private byte[] image;
+    private double budget;
 
-    @ManyToMany(mappedBy = "announce", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<UserModel> users = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserModel user;  // Lien vers l'utilisateur qui a posté l'annonce
 
-
+    @ManyToMany(mappedBy = "announce")
+    private List<UserModel> favoritedByUsers; // Utilisateurs ayant mis l'annonce en favori
 }

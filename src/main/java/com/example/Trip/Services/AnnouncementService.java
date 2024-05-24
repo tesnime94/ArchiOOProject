@@ -29,7 +29,7 @@ public class AnnouncementService {
         Optional<AnnouncementModel> announcement = announcementRepository.findById(announcementId);
         if (user.isPresent() && announcement.isPresent()) {
             user.get().getAnnounce().add(announcement.get());
-            userRepository.save(user.get()); // Saving changes to the user's list of favorite announcements
+            userRepository.save(user.get());
         }
     }
 
@@ -39,11 +39,9 @@ public class AnnouncementService {
 
     @Transactional
     public void reportAnnouncement(Integer id) {
-        // Cette méthode pourrait impliquer la mise à jour d'un champ 'reported' ou autre logique spécifique
         Optional<AnnouncementModel> announcement = announcementRepository.findById(id);
         if (announcement.isPresent()) {
-            // Logique pour signaler une annonce, par exemple augmenter un compteur de signalements
-            // Pour cet exemple, il faut ajouter un champ correspondant dans le modèle
+            // Logique pour signaler une annonce, pas encore fait
         }
     }
 }

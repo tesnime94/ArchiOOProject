@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface AnnouncementRepository extends JpaRepository<AnnouncementModel, Integer> {
     @Query("SELECT u FROM UserModel u JOIN u.announce r WHERE r.id = :announceId")
-    List<UserModel> findUsersByAnnounceId(@Param("userId") Integer announceId);
+    List<UserModel> findUsersByAnnounceId(@Param("announceId") Integer announceId);
 }
+

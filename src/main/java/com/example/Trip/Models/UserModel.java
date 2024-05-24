@@ -25,6 +25,9 @@ public class UserModel {
     private Integer phoneNumber;
     @Column(unique = true)
     private String email;
+    @ElementCollection
+    private List<Integer> reports;
+
 
     @ManyToMany(cascade = { CascadeType.ALL }) //relation entre deux tables on a une table d'association
     @JoinTable( //table d'association

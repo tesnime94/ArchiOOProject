@@ -20,6 +20,6 @@ public class VoyageModel {
     private String name;
     private String password;
 
-    @ManyToMany(mappedBy = "voyages")
-    private List<UserModel> users;
+    @OneToMany(mappedBy = "voyage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NoteModel> notes;
 }

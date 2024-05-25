@@ -4,9 +4,7 @@ import com.example.Trip.Models.VoyageModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface VoyageRepository extends JpaRepository<VoyageModel, Integer> {
-    List<VoyageModel> findByUsersEmail(String email);
+
 }

@@ -1,11 +1,10 @@
 package com.example.Trip.Models;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,15 +27,14 @@ public class UserModel {
     @ElementCollection
     private List<Integer> reports;
 
-
-    @ManyToMany(cascade = { CascadeType.ALL }) //relation entre deux tables on a une table d'association
-    @JoinTable( //table d'association
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
             name = "user_announce",
-            joinColumns = { @JoinColumn(name = "user_id") }, //on ajoute 2 champs a la table d'association
+            joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = { @JoinColumn(name = "announce_id") }
     )
-    @JsonIgnore
-    private List<AnnouncementModel> announce = new ArrayList<>();
+    private List<AnnouncementModel> announce;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NoteModel> notes;
 }

@@ -20,6 +20,10 @@ public class NoteModel {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "voyage_id")
+    @JoinColumn(name = "voyage_id", nullable = false)
     private VoyageModel voyage;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserModel user;
 }

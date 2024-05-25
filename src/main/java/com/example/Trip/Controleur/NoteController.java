@@ -15,9 +15,10 @@ public class NoteController {
     private NoteService noteService;
 
     @PostMapping("/send")
-    public void sendNote(@RequestParam String emailFrom, @RequestParam String emailTo, @RequestParam int note, @RequestParam String commentaire) {
-        noteService.sendNote(emailFrom, emailTo, note, commentaire);
+    public void sendNote(@RequestParam String emailFrom, @RequestParam String emailTo, @RequestBody NoteModel note) {
+        noteService.sendNote(emailFrom, emailTo, note.getNote(), note.getCommentaire());
     }
+
 
     @GetMapping("/user/{email}")
     public List<NoteModel> getNotesByUser(@PathVariable String email) {

@@ -1,16 +1,18 @@
 package com.example.Trip.Services;
 
 import com.example.Trip.Models.NoteModel;
-import com.example.Trip.Models.VoyageModel;
 import com.example.Trip.Models.UserModel;
+import com.example.Trip.Models.VoyageModel;
 import com.example.Trip.Repository.NoteRepository;
-import com.example.Trip.Repository.VoyageRepository;
 import com.example.Trip.Repository.UserRepository;
+import com.example.Trip.Repository.VoyageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,16 +36,18 @@ public class NoteService {
     }
 
     public boolean haveTraveledTogether(String email1, String email2) {
-        List<VoyageModel> voyages1 = getVoyagesByEmail(email1);
-        List<VoyageModel> voyages2 = getVoyagesByEmail(email2);
-        return voyages1.stream().anyMatch(voyages2::contains);
+        Set<VoyageModel> voyages1 = new HashSet<>(getVoyagesByEmail(email1));
+        Set<VoyageModel> voyages2 = new HashSet<>(getVoyagesByEmail(email2));
+        voyages1.retainAll(voyages2);
+        return !voyages1.isEmpty();
     }
 
     private List<VoyageModel> getVoyagesByEmail(String email) {
-        return noteRepository.findByEmail(email)
-                .stream()
-                .map(NoteModel::getVoyage)
-                .collect(Collectors.toList());
+        UserModel user = userRepository.getUserByEmail(email);
+        if (user != null) {
+            return user.getVoyages();
+        }
+        return List.of(); // Return an empty list if the user does not exist
     }
 
     public void sendNote(String emailFrom, String emailTo, int noteValue, String commentaire) {
@@ -73,9 +77,10 @@ public class NoteService {
     }
 
     private VoyageModel getCommonVoyage(String email1, String email2) {
-        List<VoyageModel> voyages1 = getVoyagesByEmail(email1);
-        List<VoyageModel> voyages2 = getVoyagesByEmail(email2);
-        return voyages1.stream().filter(voyages2::contains).findFirst().orElse(null);
+        Set<VoyageModel> voyages1 = new HashSet<>(getVoyagesByEmail(email1));
+        Set<VoyageModel> voyages2 = new HashSet<>(getVoyagesByEmail(email2));
+        voyages1.retainAll(voyages2);
+        return voyages1.stream().findFirst().orElse(null);
     }
 
     public double calculateAverageNoteForUser(String email) {

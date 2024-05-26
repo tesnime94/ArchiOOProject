@@ -27,6 +27,11 @@ public class UserControler {
         return userService.login(email, password);
     }
 
+    @PostMapping("/assign-voyage")
+    public void assignVoyageToUser(@RequestParam Integer userId, @RequestParam Integer voyageId) {
+        userService.assignVoyageToUser(userId, voyageId);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteAccountById(id);
@@ -47,5 +52,3 @@ public class UserControler {
         reportService.reportUser(reporterId, reportedId);
     }
 }
-
-

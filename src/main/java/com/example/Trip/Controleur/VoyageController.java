@@ -1,4 +1,4 @@
-package com.example.Trip.Controllers;
+package com.example.Trip.Controleur;
 
 import com.example.Trip.Models.VoyageModel;
 import com.example.Trip.Services.VoyageService;
@@ -28,6 +28,7 @@ public class VoyageController {
     public VoyageModel saveVoyage(@RequestBody VoyageModel voyage) {
         return voyageService.saveVoyage(voyage);
     }
+
 
     @PutMapping("/{id}")
     public VoyageModel updateVoyage(@PathVariable Integer id, @RequestBody VoyageModel updatedVoyage) {

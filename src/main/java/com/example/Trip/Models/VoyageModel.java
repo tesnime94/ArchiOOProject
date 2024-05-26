@@ -1,5 +1,7 @@
 package com.example.Trip.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,5 +23,15 @@ public class VoyageModel {
     private String password;
 
     @OneToMany(mappedBy = "voyage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<NoteModel> notes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_voyage",
+            joinColumns = @JoinColumn(name = "voyage_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    @JsonIgnore
+    private List<UserModel> users;
 }

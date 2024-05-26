@@ -21,8 +21,9 @@ public class AnnouncementController {
     @PostMapping("/addFavorite/{userId}/{announcementId}")
     public ResponseEntity<?> addFavoriteAnnouncement(@PathVariable Integer userId, @PathVariable Integer announcementId) {
         announcementService.addFavoriteAnnouncement(userId, announcementId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Announcement added to favorites successfully");
     }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAnnouncement(@PathVariable Integer id) {

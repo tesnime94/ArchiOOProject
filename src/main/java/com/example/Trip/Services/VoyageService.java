@@ -40,4 +40,8 @@ public class VoyageService {
     public void deleteVoyage(Integer id) {
         voyageRepository.deleteById(id);
     }
+
+    public boolean checkVoyageAvailability(VoyageModel voyage) {
+        return voyage.getNbTravelers() < voyage.getMaxTravelers();
+    }
 }

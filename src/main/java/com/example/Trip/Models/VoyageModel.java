@@ -21,6 +21,9 @@ public class VoyageModel {
 
     private String name;
     private String password;
+    private int Price;
+    private int nbTravelers;
+    private int maxTravelers;
 
     @OneToMany(mappedBy = "voyage", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

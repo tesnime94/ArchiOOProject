@@ -27,8 +27,13 @@ public class AnnouncementController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAnnouncement(@PathVariable Integer id) {
-        announcementService.deleteAnnouncement(id);
-        return ResponseEntity.ok().build();
+        try {
+            announcementService.deleteAnnouncement(id);
+            return ResponseEntity.ok("Announcement with ID " + id + " was deleted successfully.");
+        } catch (Exception e) {
+
+            return ResponseEntity.badRequest().body("Error deleting announcement: " + e.getMessage());
+        }
     }
 
     @PostMapping("/report/{id}")

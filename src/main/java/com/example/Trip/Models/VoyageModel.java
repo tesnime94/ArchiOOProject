@@ -20,7 +20,6 @@ public class VoyageModel {
     private Integer id;
 
     private String name;
-    private String password;
     private int Price;
     private int nbTravelers;
     private int maxTravelers;
@@ -37,4 +36,8 @@ public class VoyageModel {
     )
     @JsonIgnore
     private List<UserModel> users;
+
+    @OneToOne(mappedBy = "voyage")
+    @JsonIgnore
+    private AnnouncementModel announcement;
 }

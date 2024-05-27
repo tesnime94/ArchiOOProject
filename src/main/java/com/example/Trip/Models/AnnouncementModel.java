@@ -5,10 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
-
-import org.hibernate.annotations.Cascade;
 
 @Data
 @Entity
@@ -29,6 +28,10 @@ public class AnnouncementModel {
     private UserModel user;  // Lien vers l'utilisateur qui a posté l'annonce
 
     @ManyToMany(mappedBy = "announce")
-    @Cascade(org.hibernate.annotations.CascadeType.REMOVE) // Hibernate specific annotation
+    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
     private List<UserModel> favoritedByUsers;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "voyage_id")  // Colonne pour stocker l'ID du voyage associé
+    private VoyageModel voyage;
 }

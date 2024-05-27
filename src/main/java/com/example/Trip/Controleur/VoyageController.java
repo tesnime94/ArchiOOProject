@@ -29,6 +29,7 @@ public class VoyageController {
         return voyageService.saveVoyage(voyage);
     }
 
+
     @PutMapping("/{id}")
     public VoyageModel updateVoyage(@PathVariable Integer id, @RequestBody VoyageModel updatedVoyage) {
         return voyageService.updateVoyage(id, updatedVoyage);

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -27,5 +29,6 @@ public class AnnouncementModel {
     private UserModel user;  // Lien vers l'utilisateur qui a posté l'annonce
 
     @ManyToMany(mappedBy = "announce")
-    private List<UserModel> favoritedByUsers; // Utilisateurs ayant mis l'annonce en favori
+    @Cascade(org.hibernate.annotations.CascadeType.REMOVE) // Hibernate specific annotation
+    private List<UserModel> favoritedByUsers;
 }

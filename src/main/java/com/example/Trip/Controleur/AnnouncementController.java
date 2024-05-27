@@ -21,13 +21,19 @@ public class AnnouncementController {
     @PostMapping("/addFavorite/{userId}/{announcementId}")
     public ResponseEntity<?> addFavoriteAnnouncement(@PathVariable Integer userId, @PathVariable Integer announcementId) {
         announcementService.addFavoriteAnnouncement(userId, announcementId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Announcement added to favorites successfully");
     }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAnnouncement(@PathVariable Integer id) {
-        announcementService.deleteAnnouncement(id);
-        return ResponseEntity.ok().build();
+        try {
+            announcementService.deleteAnnouncement(id);
+            return ResponseEntity.ok("Announcement with ID " + id + " was deleted successfully.");
+        } catch (Exception e) {
+
+            return ResponseEntity.badRequest().body("Error deleting announcement: " + e.getMessage());
+        }
     }
 
     @PostMapping("/report/{id}")

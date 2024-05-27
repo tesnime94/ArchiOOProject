@@ -1,5 +1,6 @@
 package com.example.Trip.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,5 +37,10 @@ public class UserModel {
     private List<AnnouncementModel> announce;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<NoteModel> notes;
+
+    @ManyToMany(mappedBy = "users")
+    @JsonIgnore
+    private List<VoyageModel> voyages;
 }

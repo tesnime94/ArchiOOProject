@@ -42,6 +42,7 @@ public class UserControler {
         return userService.createAccount(userPo);
     }
 
+    //method to can report user 
     @PostMapping("/report")
     public void reportUser(@RequestParam Integer reporterId, @RequestParam Integer reportedId) {
         reportService.reportUser(reporterId, reportedId);

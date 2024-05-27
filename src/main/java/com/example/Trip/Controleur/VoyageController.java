@@ -1,4 +1,4 @@
-package com.example.Trip.Controllers;
+package com.example.Trip.Controleur;
 
 import com.example.Trip.Models.VoyageModel;
 import com.example.Trip.Services.VoyageService;

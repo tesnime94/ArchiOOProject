@@ -36,4 +36,8 @@ public class VoyageModel {
     )
     @JsonIgnore
     private List<UserModel> users;
+
+    @OneToOne(mappedBy = "voyage")
+    @JsonIgnore
+    private AnnouncementModel announcement;
 }

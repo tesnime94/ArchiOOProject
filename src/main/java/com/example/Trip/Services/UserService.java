@@ -4,6 +4,7 @@ import com.example.Trip.Models.UserModel;
 import com.example.Trip.Models.VoyageModel;
 import com.example.Trip.Repository.UserRepository;
 import com.example.Trip.Repository.VoyageRepository;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class UserService {
 
     @Autowired
     private VoyageRepository voyageRepository;
-
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     public List<UserModel> getUser() {
@@ -76,6 +76,14 @@ public class UserService {
         var user = userRepository.getUserByEmail(email);
         if (user == null) return 0;
         return user.getPassword().equals(password) ? user.getId() : 0;
+    }
+    public void logout(HttpSession session) {
+        if (session != null) {
+            log.info("Déconnexion de l'utilisateur: {}", session.getAttribute("userEmail"));
+            session.invalidate();  // Invalidate the session
+        } else {
+            log.info("Aucune session active trouvée pour déconnexion.");
+        }
     }
 
     public void assignVoyageToUser(Integer userId, Integer voyageId) {

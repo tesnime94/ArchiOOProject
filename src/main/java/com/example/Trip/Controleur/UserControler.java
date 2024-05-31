@@ -3,6 +3,7 @@ package com.example.Trip.Controleur;
 import com.example.Trip.Models.UserModel;
 import com.example.Trip.Services.ReportService;
 import com.example.Trip.Services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class UserControler {
         userService.deleteAccountById(id);
     }
 
-    @PostMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public UserModel updateUser(@PathVariable Integer id, @RequestBody UserModel updatedUser) {
         return userService.updateAccount(id, updatedUser.getName(), updatedUser.getSurname(),updatedUser.getBirth(),updatedUser.getPassword(), updatedUser.getAddress(),updatedUser.getPhoneNumber(), updatedUser.getEmail());
     }
@@ -51,5 +52,10 @@ public class UserControler {
     @PostMapping("/report")
     public void reportUser(@RequestParam Integer reporterId, @RequestParam Integer reportedId) {
         reportService.reportUser(reporterId, reportedId);
+    }
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        userService.logout(session);
+        return "Vous êtes déconnecté avec succès!";
     }
 }

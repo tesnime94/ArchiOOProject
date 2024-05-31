@@ -30,7 +30,6 @@ public class VoyageService {
 
         if (existingVoyage != null) {
             existingVoyage.setName(updatedVoyage.getName());
-            existingVoyage.setPassword(updatedVoyage.getPassword());
             return voyageRepository.save(existingVoyage);
         } else {
             return null;

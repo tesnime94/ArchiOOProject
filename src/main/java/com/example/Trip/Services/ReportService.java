@@ -26,5 +26,6 @@ public class ReportService {
             log.error("Utilisateur à signaler non trouvé avec l'ID: {}", reportedId);
         }
     }
+
 }
 

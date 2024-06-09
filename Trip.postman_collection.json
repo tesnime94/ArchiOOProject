@@ -1,0 +1,448 @@
+{
+	"info": {
+		"_postman_id": "30e225ac-649a-495a-bfe1-b04154be3e76",
+		"name": "Trip",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31966081"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Ajout user 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"Adam\",\n        \"surname\": \"Sdhm\",\n        \"birth\": \"2003-11-12\",\n        \"password\": \"123\",\n        \"address\": \"90 rue de Tolbiac\",\n        \"phoneNumber\": 123456789,\n        \"email\": \"adam.sdhm@email.com\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Ajout user 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"name\": \"Kyllian\",\n        \"surname\": \"Mbappe\",\n        \"birth\": \"2000-11-12\",\n        \"password\": \"1234\",\n        \"address\": \"Paris\",\n        \"phoneNumber\": 1234567,\n        \"email\": \"kyky.mbappe@email.com\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Ajout user 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"name\": \"Bertrand\",\n        \"surname\": \"Renon\",\n        \"birth\": \"1999-10-05\",\n        \"password\": \"12345\",\n        \"address\": \"Lyon\",\n        \"phoneNumber\": 123499567,\n        \"email\": \"bertrand.renon@email.com\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Voir les user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Voyage",
+			"item": [
+				{
+					"name": "createVoyage",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aventure en Islande\",\r\n    \"maxTravelers\": 30,\r\n    \"nbTravelers\": 0,\r\n    \"price\": 2500\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/voyages"
+					},
+					"response": []
+				},
+				{
+					"name": "getVoyage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/voyages/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "updateVoyage",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Aventure en Irlande\",\r\n    \"password\": null,\r\n    \"nbTravelers\": 0,\r\n    \"maxTravelers\": 31,\r\n    \"notes\": [],\r\n    \"price\": 2500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/voyages/{id}"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVoyage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/voyages/{id}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "deletePurchase",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/api/purchases/delete/{purchaseId}"
+					},
+					"response": []
+				},
+				{
+					"name": "addPurchase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 1,\r\n  \"voyageId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/purchases/add"
+					},
+					"response": []
+				},
+				{
+					"name": "validatePurchase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/purchases/validate/{userId}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Announcement",
+			"item": [
+				{
+					"name": "addAnnouncement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Excursion au Sahara\",\r\n  \"description\": \"Découvrez le désert le plus captivant au monde\",\r\n  \"period\": \"2024-08-10\",\r\n  \"budget\": 1500\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/announcement"
+					},
+					"response": []
+				},
+				{
+					"name": "addAnnouncementToFav",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": "http://localhost:8080/announcement/addFavorite/{userId}/{announcementId}"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAnnouncement",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/announcement/delete/{id}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Note",
+			"item": [
+				{
+					"name": "Ajout d'un voyage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Paris Trip\",\n  \"password\": \"voyage123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/voyages"
+					},
+					"response": []
+				},
+				{
+					"name": "Assignation voyage 1 au user 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/assign-voyage?userId=1&voyageId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"assign-voyage"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "voyageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignation voyage 1 a l'user 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/assign-voyage?userId=2&voyageId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"assign-voyage"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2"
+								},
+								{
+									"key": "voyageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignation voyage 1 a l'user 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/assign-voyage?userId=3&voyageId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"assign-voyage"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3"
+								},
+								{
+									"key": "voyageId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User 1 note user 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"note\": 4,\n  \"commentaire\": \"Bon voyage\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notes/send?emailFrom=adam.sdhm@email.com&emailTo=kyky.mbappe@email.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"send"
+							],
+							"query": [
+								{
+									"key": "emailFrom",
+									"value": "adam.sdhm@email.com"
+								},
+								{
+									"key": "emailTo",
+									"value": "kyky.mbappe@email.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User 3 note user 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"note\": 2,\n  \"commentaire\": \"Voyage médiocre\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notes/send?emailFrom=bertrand.renon@email.com&emailTo=kyky.mbappe@email.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"send"
+							],
+							"query": [
+								{
+									"key": "emailFrom",
+									"value": "bertrand.renon@email.com"
+								},
+								{
+									"key": "emailTo",
+									"value": "kyky.mbappe@email.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Moyenne note user 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/notes/user/kyky.mbappe@email.com/average"
+					},
+					"response": []
+				},
+				{
+					"name": "Voir les notes et commentaire des voyages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
